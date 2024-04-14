@@ -1,7 +1,8 @@
-version: '3'
+version: '3.8'
 
 services:
   nginx:
+    image: nginx
     build: ./requirements/nginx
     container_name: nginx
     env_file:
@@ -17,6 +18,7 @@ services:
       - wordpress
 
   mariadb:
+    image: mariadb
     build: ./requirements/mariadb
     container_name: mariadb
     env_file:
@@ -30,6 +32,7 @@ services:
       - db-volume:/var/lib/mysql
 
   wordpress:
+    image: wordpress
     build: ./requirements/wordpress
     container_name: wordpress
     depends_on:
@@ -46,13 +49,13 @@ volumes:
   db-volume:
     driver: local
     driver_opts:
-      device: /Users/kichan/Desktop/Inception/srcs/data/db
+      device: /home/kichlee/data/db
       type: none
       o: bind
   wp-volume:
     driver: local
     driver_opts:
-      device: /Users/kichan/Desktop/Inception/srcs/data/web
+      device: /home/kichlee/data/web
       type: none
       o: bind
 
